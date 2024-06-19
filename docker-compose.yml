@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  letsencrypt:
+    image: linuxserver/letsencrypt
+    container_name: letsencrypt
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - URL=orlwambier.com.br
+      - SUBDOMAINS=wildcard,
+      - VALIDATION=dns
+      - DNSPLUGIN=dnsimple
+      - EMAIL=nilton.a.junior@hotmail.com
+      - DHLEVEL=4096
+    volumes:
+      - config:/config
+    restart: unless-stopped
+  website:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+volumes: 
+  config:
+
