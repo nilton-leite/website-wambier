@@ -1,9 +1,9 @@
 version: "3.8"
 
 services:
-  letsencrypt:
+  letsencrypt-website:
     image: linuxserver/letsencrypt
-    container_name: letsencrypt
+    container_name: letsencrypt-website
     environment:
       - PUID=1000
       - PGID=1000
